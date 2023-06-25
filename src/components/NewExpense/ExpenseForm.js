@@ -5,16 +5,17 @@ import Tags from "../Tag/Tags";
 
 const ExpenseForm = (props) => {
 	const tags = [
-		{ label: "miscellaneous" },
-		{ label: "groceries" },
-		{ label: "rent" },
-		{ label: "monthly bills" },
-		{ label: "health" },
+		{ label: "Miscellaneous" },
+		{ label: "Groceries" },
+		{ label: "Rent" },
+		{ label: "Monthly Bills" },
+		{ label: "Health" },
 	];
 
 	const [enteredTitle, setEnteredTitle] = useState("");
 	const [enteredAmount, setEnteredAmount] = useState("");
 	const [enteredDate, setEnteredDate] = useState("");
+	const [enteredTags, setEnteredTags] = useState([])
 
 	const titleChangeHandler = (event) => {
 		setEnteredTitle(event.target.value);
@@ -28,17 +29,31 @@ const ExpenseForm = (props) => {
 		setEnteredDate(event.target.value);
 	};
 
+	const tagsChangeHandler = (event) =>{
+		const clickedTag =  event.target.outerText;
+		setEnteredTags((prevTags) => {
+			if(prevTags.includes(clickedTag)){
+				return prevTags.filter((tag) => (tag!==event.target.outerText))
+			}
+			else{
+				return [...enteredTags, event.target.outerText]
+			}
+		})
+	}
+
 	const submitHandler = (event) => {
 		event.preventDefault();
 		const expenseData = {
 			title: enteredTitle,
 			amount: enteredAmount,
 			date: new Date(enteredDate),
+			tags: enteredTags
 		};
 		props.onSaveExpenseData(expenseData);
 		setEnteredAmount("");
 		setEnteredDate("");
 		setEnteredTitle("");
+		setEnteredTags([])
 	};
 	return (
 		<form onSubmit={submitHandler}>
@@ -74,8 +89,9 @@ const ExpenseForm = (props) => {
 			</div>
 			<div className="new-expense__controls">
 				<label>Tags:</label>
-				<Tags tags={tags} />
+				<Tags tags={tags} handler={tagsChangeHandler}/>
 			</div>
+			<span><h4>{enteredTags.toString()}</h4></span>
 			<div className="new-expense__actions">
 				<button type="submit">Add Expense</button>
 			</div>

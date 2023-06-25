@@ -25,6 +25,10 @@
   color: white;
 }
 
+.expense-item h4 {
+  color: rgb(210, 210, 210);
+}
+
 .expense-item__price {
   font-size: 1rem;
   font-weight: bold;
@@ -50,5 +54,18 @@
   .expense-item__price {
     font-size: 1.25rem;
     padding: 0.5rem 1.5rem;
+  }
+
+  .expense-item__description button {
+    font: inherit;
+    cursor: pointer;
+    padding: 1.5rem 1.5rem;
+    border: 1px solid #a8000000;
+    background-color: #a8000000;
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+    background-image: url(../../../build/delete.png);
+    background-size: contain;
   }
 }

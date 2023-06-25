@@ -2,8 +2,8 @@ import "./Tag.css";
 
 const Tag = (props) => {
 
-    const tagOnClickHandler = () => {
-        console.log("clicked");
+    const tagOnClickHandler = (event) => {
+        props.handler(event);
     }
 
 	return (

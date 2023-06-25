@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 
 import "./ExpenseForm.css";
+import Tags from "../Tag/Tags";
 
 const ExpenseForm = (props) => {
+	const tags = [
+		{ label: "miscellaneous" },
+		{ label: "groceries" },
+		{ label: "rent" },
+		{ label: "monthly bills" },
+		{ label: "health" },
+	];
+
 	const [enteredTitle, setEnteredTitle] = useState("");
 	const [enteredAmount, setEnteredAmount] = useState("");
 	const [enteredDate, setEnteredDate] = useState("");
@@ -27,9 +36,9 @@ const ExpenseForm = (props) => {
 			date: new Date(enteredDate),
 		};
 		props.onSaveExpenseData(expenseData);
-        setEnteredAmount('');
-        setEnteredDate('');
-        setEnteredTitle('');
+		setEnteredAmount("");
+		setEnteredDate("");
+		setEnteredTitle("");
 	};
 	return (
 		<form onSubmit={submitHandler}>
@@ -62,6 +71,10 @@ const ExpenseForm = (props) => {
 						onChange={dateChangeHandler}
 					/>
 				</div>
+			</div>
+			<div className="new-expense__controls">
+				<label>Tags:</label>
+				<Tags tags={tags} />
 			</div>
 			<div className="new-expense__actions">
 				<button type="submit">Add Expense</button>

@@ -19,7 +19,7 @@ const ExpenseForm = (props) => {
 
 	const navigate = useNavigate();
 
-	navigate('/form')
+	navigate('/form');
 
 	const userId = JSON.parse(localStorage.getItem('user')).googleId;
 

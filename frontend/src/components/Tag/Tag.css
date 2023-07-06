@@ -1,0 +1,16 @@
+.expense_tag {
+    background-color: #d0c4f8;
+	padding: 0rem 1rem;
+	max-width: 95%;
+	border-radius: 12px;
+	text-align: center;
+	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+	justify-content: flex-start;
+	display: flex;
+	font-size: smaller; 
+	cursor: pointer;
+}
+
+.expense_tag:hover{
+	background-color: #b19afa;
+}

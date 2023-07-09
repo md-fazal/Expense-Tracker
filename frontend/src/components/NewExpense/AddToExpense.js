@@ -1,10 +1,14 @@
 import NewExpense from "./NewExpense";
 import "./AddToExpense.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddToExpense = (props) => {
+
+	const navigate = useNavigate();
 	const outputForm = () => {
 		setDisplay(<NewExpense onAddExpense={props.onAddExpense}></NewExpense>);
+		navigate('/form');
 	};
 
 	const addNew = (

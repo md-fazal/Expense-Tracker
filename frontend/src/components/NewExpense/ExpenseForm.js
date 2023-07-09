@@ -5,6 +5,7 @@ import Tags from "../Tag/Tags";
 import client from "../../client";
 import {v4 as uuidv4} from 'uuid'
 import { useNavigate } from "react-router-dom";
+import { fetchUserId } from "../../queries";
 
 
 const tags = [
@@ -17,11 +18,8 @@ const tags = [
 
 const ExpenseForm = (props) => {
 
-	const navigate = useNavigate();
 
-	navigate('/form');
-
-	const userId = JSON.parse(localStorage.getItem('user')).googleId;
+	const userId = fetchUserId();
 
 	const [enteredTitle, setEnteredTitle] = useState("");
 	const [enteredAmount, setEnteredAmount] = useState("");

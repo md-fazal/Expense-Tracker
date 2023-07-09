@@ -4,12 +4,19 @@ import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
 import "./ExpenseItem.css";
 import { AiFillDelete } from "react-icons/ai";
+import client from "../../client";
+import { fetchUserId } from "../../queries";
 
 const ExpenseItem = (props) => {
+	console.log(props)
 	const [title, setTitle] = useState(props.title);
 
+	const userId = fetchUserId();
+
 	const onClickHandler = (event) => {
-		props.deleteExpense(props.id);
+		const toDelete = new Array(`expenses[_key=="${props.id}"]`)
+		client.patch(userId).unset(toDelete).commit();
+		console.log(toDelete);
 	};
 
 	return (

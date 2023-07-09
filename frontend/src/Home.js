@@ -4,7 +4,7 @@ import Expenses from "./components/Expenses/Expenses";
 import { useState } from "react";
 import { useEffect } from "react";
 import client from "./client";
-import { FETCH_EXPENSES } from "./queries";
+import { fetchExpenses, fetchUserId } from "./queries";
 
 const DUMMY_EXPENSES = [
 	{
@@ -39,15 +39,17 @@ const DUMMY_EXPENSES = [
 
 const Home = () => {
 	//fetch expenses here
-    const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+    const [expenses, setExpenses] = useState([]);
+	const userId = fetchUserId();
+	const query = fetchExpenses(userId);
 
-	// useEffect(() => {
-	//   client
-	//   .fetch(FETCH_EXPENSES)
-	//   .then((data) => {
-	// 	setExpenses(data)
-	//   })
-	// }, [])
+	useEffect(() => {
+	  client
+	  .fetch(query)
+	  .then((data) => {
+		setExpenses(data[0])
+	  })
+	}, [])
 	
 
 

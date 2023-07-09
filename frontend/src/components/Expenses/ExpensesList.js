@@ -2,7 +2,6 @@ import ExpenseItem from "./ExpenseItem";
 import "./ExpensesList.css";
 
 const ExpensesList = (props) => {
-	console.log(props);
 	if (props.items.length === 0)
 		return <h2 className="expenses-list__fallback">No Content Here</h2>;
 
@@ -17,9 +16,9 @@ const ExpensesList = (props) => {
 			{props.items.map((expense) => (
 				<ExpenseItem
 					deleteExpense={deleteExpense}
-					key={expense.id}
-					id={expense.id}
-					title={expense.title}
+					key={expense._key}
+					id={expense._key}
+					title={expense.expenseTitle}
 					amount={expense.amount}
 					date={expense.date}
 					tags={expense.tags}
